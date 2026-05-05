@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<WebClient.Models.Cidade>
+
+<div class="text-center">
+    <h1 class="display-4">Cidades</h1>
+
+    @ViewBag.MensagemGravacao<br />
+
+    <form method="post" enctype="multipart/form-data" asp-controller="Home"asp-controller asp-action="Index">
+    Id: <input id="txtIdCidade" name="IdCidade" /><br />
+    Nome: <input id="txtNome" name="Nome" /><br />
+    População: <input id="txtPopulacao" name="Populacao" /><br />
+    Estado: <select id="selEstado" name="Estado" /><br />
+        <option>11</option>
+        <option>31</option>
+     </select><br />
+    Pais: <select id="selPais" name="Pais" /><br />
+        <option>55</option>
+     </select><br />
+     <input type="submit" name="Gravar" id="btnSubmit" value="Gravar"/>
+    </form>
+    </hr>
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+</div>
